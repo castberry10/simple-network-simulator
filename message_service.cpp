@@ -1,10 +1,3 @@
-// #ifndef MESSAGE_SERVICE_H
-// #define MESSAGE_SERVICE_H
-
-// #include "address.h"
-// #include "host.h"
-// #include "service.h"
-// #include <iostream>
 
 // // send 함수를 호출하여 메시지를 전송할 수 있는 서비스
 // class MessageService : public Service {
@@ -18,9 +11,8 @@
 //   MessageService(Host *host, short port, Address destAddress, short destPort)
 //       : Service(host, port), destAddress_(destAddress), destPort_(destPort) {}
 
-// public:
-//   // 메시지를 전송한다
-//   void send(std::string message);
-// };
-
 // #endif
+#include "message_service.h"
+void MessageService::send(std::string message){
+
+}
