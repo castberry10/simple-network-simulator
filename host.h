@@ -12,7 +12,7 @@ class Host : public Node {
 private:
   // 호스트의 주소
   Address address_;
-
+  std::vector<int> ports_;
   // 설치된 서비스 목록
   std::vector<Service *> services_;
 
