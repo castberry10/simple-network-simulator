@@ -21,7 +21,7 @@
 // };
 
 void Host::initialize(){
-  this->address_ = id();
+  // this->address_ = id();
   services_.clear();
   return;
 }
