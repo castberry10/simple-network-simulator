@@ -29,3 +29,24 @@ void Host::initialize(){
 void Host::send(Packet *packet){
   return;
 }
+
+int Host::availablePort(){
+  int port = default_port_;
+  while(1){
+    if (std::find(ports_.begin(), ports_.end(), port) == ports_.end()){
+      return port;
+    }else{
+      port++;
+    }
+  }
+}
+
+void Host::usePort(int port){
+  ports_.push_back(port);
+  return;
+}
+
+void Host::releasePort(int port){
+  ports_.erase(std::remove(ports_.begin(), ports_.end(), port), ports_.end());
+  return;
+}
