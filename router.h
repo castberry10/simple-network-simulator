@@ -17,6 +17,7 @@ protected:
 public:
   void receive(Packet *packet);
   void send(Packet *packet);
+  
 };
 
 #endif

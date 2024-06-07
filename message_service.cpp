@@ -14,9 +14,13 @@
 // #endif
 #include "message_service.h"
 void MessageService::send(std::string message){
-    Packet * newPacket = new Packet(host_->address(),destAddress_,port_,destPort_,message);
+    Packet * newPacket = new Packet(host_->address(),destAddress_, port_,destPort_,message);
     host_->send(newPacket);
 }
 void MessageService::receive(Packet * packet){
-    //Todo
+    std::cout << "MessageService: received \"";
+    std::cout << (packet->dataString()) << "\" from ";
+    std::cout << packet->srcAddress().toString() << ":";
+    std::cout << packet->srcPort() << std::endl;
+    delete packet;
 }

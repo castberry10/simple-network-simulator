@@ -52,12 +52,22 @@ void Host::send(Packet *packet){
 }
 
 void Host::receive(Packet * packet){
+  std::cout << "Host #" << id();
+  std::cout << ": received packet, destination port: ";
+  std::cout << packet->destPort();
+  std::cout << std::endl;
   for(int i = 0; i < services_.size(); i++){
     if(services_[i]->getPort() == packet->destPort()){
-      //Todo
-      return 
+      services_[i]->receive(packet);      
+      return;
     }
   }
+  std::cout << "Host #" << id();
+  std::cout << ": no service for packet (from: ";
+  std::cout << packet->srcAddress().toString();
+  std::cout << ", to: ";
+  std::cout << ", " << packet->data().size();
+  std::cout << " byte)" << std::endl;
 }
 
 int Host::availablePort(){
