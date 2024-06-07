@@ -1,6 +1,7 @@
 #ifndef HOST_H
 #define HOST_H
 
+#include "node.h"
 #include "address.h"
 #include "packet.h"
 #include "service.h"
@@ -21,7 +22,7 @@ private:
 public:
   Address address() { return address_; }
   Host(Address address) : address_(address) {}
-
+  ~Host();
   // 사용 가능한 포트를 반환한다.
   int availablePort();
 

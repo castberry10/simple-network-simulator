@@ -39,7 +39,7 @@ void Host::initialize(){
 void Host::send(Packet *packet){
   int randlinkindex = rand() % links.size();
 
-  std::cout << "Host #" << id;
+  std::cout << "Host #" << id();
   std::cout << ": sending packet (from: ";
   std::cout << packet->srcAddress().toString();
   std::cout << ", to: ";
@@ -56,7 +56,7 @@ void Host::receive(Packet * packet){
   std::cout << ": received packet, destination port: ";
   std::cout << packet->destPort();
   std::cout << std::endl;
-  for(int i = 0; i < services_.size(); i++){
+  for(std::vector<Service*>::size_type i = 0; i < services_.size(); i++){
     if(services_[i]->getPort() == packet->destPort()){
       services_[i]->receive(packet);      
       return;

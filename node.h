@@ -5,6 +5,8 @@
 #include "packet.h"
 #include <vector>
 
+class Link;
+
 class Node {
   friend class LinkInstaller;
 
