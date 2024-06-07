@@ -12,9 +12,14 @@ private:
   int id_;
   static int nextId_;
 
+protected:
+  std::vector<Link *> links;
+  void installLink(Link * link); 
 public:
   Node() : id_(nextId_++) {}
   int id() const { return id_; }
+  void receive(Packet *packet){}
+  void send(Packet *packet){}
 };
 
 #endif

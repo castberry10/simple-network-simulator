@@ -1,9 +1,13 @@
 #ifndef LINK_H
 #define LINK_H
 
+
 #include "packet.h"
 #include <cstdlib>
+#include "host.h"
+#include "node.h"
 
+class Host;
 class Node;
 
 class Link {
@@ -19,6 +23,8 @@ private:
   Node *other(const Node *node) const {
     return node == nodeA_ ? nodeB_ : nodeA_;
   }
+public:
+  void inout(Node* reqNode, Packet* packet);
 };
 
 #endif

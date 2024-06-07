@@ -1,4 +1,7 @@
 #include "host.h"
+#include <iostream>
+#include <cstdlib>
+// #include <ctime>
 // class Host : public Node {
 //   friend class ServiceInstaller;
 
@@ -19,6 +22,13 @@
 //   // 링크를 랜덤으로 하나 선택하여 패킷을 전송한다.
 //   void send(Packet *packet);
 // };
+Host::~Host() {
+  for (std::vector<Service*>::iterator it = this->services_.begin(); it != this->services_.end(); it++) {
+    Service* service = *it; 
+    std::cout << "delete service"  << std::endl;
+    delete service;
+  }
+}
 
 void Host::initialize(){
   // this->address_ = id();
@@ -27,7 +37,27 @@ void Host::initialize(){
 }
 
 void Host::send(Packet *packet){
+  int randlinkindex = rand() % links.size();
+
+  std::cout << "Host #" << id;
+  std::cout << ": sending packet (from: ";
+  std::cout << packet->srcAddress().toString();
+  std::cout << ", to: ";
+  std::cout << packet->destAddress().toString();
+  std::cout << ", " << packet->data().size();
+  std::cout << " byte)" << std::endl;
+
+  links[randlinkindex]->inout(this, packet);
   return;
+}
+
+void Host::receive(Packet * packet){
+  for(int i = 0; i < services_.size(); i++){
+    if(services_[i]->getPort() == packet->destPort()){
+      //Todo
+      return 
+    }
+  }
 }
 
 int Host::availablePort(){
@@ -50,3 +80,4 @@ void Host::releasePort(int port){
   ports_.erase(std::remove(ports_.begin(), ports_.end(), port), ports_.end());
   return;
 }
+
