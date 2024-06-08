@@ -1,38 +1,17 @@
 #include "host.h"
 #include <iostream>
 #include <cstdlib>
-// #include <ctime>
-// class Host : public Node {
-//   friend class ServiceInstaller;
 
-// private:
-//   // 호스트의 주소
-//   Address address_;
-
-//   // 설치된 서비스 목록
-//   std::vector<Service *> services_;
-
-// public:
-//   Address address() { return address_; }
-//   Host(Address address) : address_(address) {}
-
-//   // 호스트와 설치된 서비스를 전부 초기화한다.
-//   void initialize();
-
-//   // 링크를 랜덤으로 하나 선택하여 패킷을 전송한다.
-//   void send(Packet *packet);
-// };
 Host::~Host() {
-  // for (std::vector<Service*>::iterator it = this->services_.begin(); it != this->services_.end(); it++) {
-    //Service* service = *it; 
-    //std::cout << "delete service"  << std::endl;
-    //delete service;
-  // }
+  
 }
 
 void Host::initialize(){
-  // services_.clear();
-  return;
+  // ports_.clear();
+  // for(std::vector<Service*>::size_type i = 0; i < services_.size(); i++){
+  //   services_[i]->setPort()
+  // }
+  // return;
 }
 
 void Host::send(Packet *packet){
@@ -44,19 +23,23 @@ void Host::send(Packet *packet){
   std::cout << ", to: ";
   std::cout << packet->destAddress().toString();
   std::cout << ", " << packet->data().size();
-  std::cout << " byte)" << std::endl;
+  std::cout << " bytes)" << std::endl;
 
   links[randlinkindex]->inout(this, packet);
   return;
 }
 
 void Host::receive(Packet * packet){
-  std::cout << "Host #" << id();
-  std::cout << ": received packet, destination port: ";
-  std::cout << packet->destPort();
-  std::cout << std::endl;
+  
   for(std::vector<Service*>::size_type i = 0; i < services_.size(); i++){
+    // std::cout << "services_[i]->getPort()" << services_[i]->getPort() << std::endl;
+    // std::cout << "packet->destPort()" << packet->destPort() << std::endl;
+    
     if(services_[i]->getPort() == packet->destPort()){
+      std::cout << "Host #" << id();
+      std::cout << ": received packet, destination port: ";
+      std::cout << packet->destPort();
+      std::cout << std::endl;
       services_[i]->receive(packet);      
       return;
     }
@@ -65,8 +48,9 @@ void Host::receive(Packet * packet){
   std::cout << ": no service for packet (from: ";
   std::cout << packet->srcAddress().toString();
   std::cout << ", to: ";
+  std::cout << packet->destAddress().toString();
   std::cout << ", " << packet->data().size();
-  std::cout << " byte)" << std::endl;
+  std::cout << " bytes)" << std::endl;
 }
 
 int Host::availablePort(){

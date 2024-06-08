@@ -12,7 +12,7 @@ void Router::send(Packet *packet){
       std::cout << ", to: ";
       std::cout << packet->destAddress().toString();
       std::cout << ", " << packet->data().size();
-      std::cout << " byte)" << std::endl;
+      std::cout << " bytes)" << std::endl;
       routingTable_[i].nextLink->inout(this, packet);
       return;
     }
@@ -21,8 +21,9 @@ void Router::send(Packet *packet){
   std::cout << ": no route for packet (from: ";
   std::cout << packet->srcAddress().toString();
   std::cout << ", to: ";
+  std::cout << packet->destAddress().toString();
   std::cout << ", " << packet->data().size();
-  std::cout << " byte)" << std::endl;
+  std::cout << " bytes)" << std::endl;
   delete packet;
   return;
 }

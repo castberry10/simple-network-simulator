@@ -19,4 +19,6 @@ void EchoService::receive(Packet * packet){
   std::cout << packet->srcAddress().toString() << ":";
   std::cout << packet->srcPort() << ", ";
   std::cout << "send reply with same data";
+  std::cout << std::endl;
+  send(packet);
 }

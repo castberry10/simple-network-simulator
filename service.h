@@ -19,10 +19,12 @@ protected:
 
   Service(Host *host, int port) : host_(host), port_(port) {}
 public:
-  short getPort(){return port_;}
-  void send(std::string message){
+  void setPort(short newport){
+    port_ = newport;
   }
-  void receive(Packet * packet){}
+  short getPort(){return port_;}
+  void send(std::string message){}
+  virtual void receive(Packet * packet)=0;
 };
 
 
