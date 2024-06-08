@@ -7,11 +7,18 @@ Host::~Host() {
 }
 
 void Host::initialize(){
-  // ports_.clear();
-  // for(std::vector<Service*>::size_type i = 0; i < services_.size(); i++){
-  //   services_[i]->setPort()
-  // }
-  // return;
+  ports_.clear();
+  for(std::vector<Service*>::size_type i = 0; i < services_.size(); i++){
+    if(services_[i]->getPort() == -1){
+      int hostport = this->availablePort();
+      this->usePort(hostport);
+      services_[i]->setPort(hostport);
+    }
+    // services_[i]->setPort()
+    // services_
+  }
+  return;
+  
 }
 
 void Host::send(Packet *packet){

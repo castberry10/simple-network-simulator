@@ -49,4 +49,4 @@ service_installer.o: service_installer.cpp service_installer.h
 	$(CC) $(CFLAGS) -c service_installer.cpp
 
 clean:
-	del /Q *.o first second
+	del /Q *.o first.exe second.exe

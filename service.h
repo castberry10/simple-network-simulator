@@ -25,6 +25,7 @@ public:
   short getPort(){return port_;}
   void send(std::string message){}
   virtual void receive(Packet * packet)=0;
+  // virtual void serviceInitialize(){}
 };
 
 
