@@ -1,11 +1,12 @@
 #include "link.h"
+#include "node.h"
 #include <iostream>
 
 void Link::inout(Node* reqNode, Packet* packet){
   std::cout << "Link: forwarding packet from node #";
-  std::cout << packet->srcAddress().toString();
+  std::cout << reqNode->id();
   std::cout << ", to node #";
-  std::cout << packet->destAddress().toString();
+  std::cout << other(reqNode)->id();
   std::cout << std::endl;
   other(reqNode)->receive(packet);
 }

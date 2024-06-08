@@ -1,13 +1,10 @@
 #ifndef LINK_H
 #define LINK_H
 
-
 #include "packet.h"
 #include <cstdlib>
-#include "host.h"
-#include "node.h"
 
-class Host;
+
 class Node;
 
 class Link {

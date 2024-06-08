@@ -23,16 +23,15 @@
 //   void send(Packet *packet);
 // };
 Host::~Host() {
-  for (std::vector<Service*>::iterator it = this->services_.begin(); it != this->services_.end(); it++) {
-    Service* service = *it; 
-    std::cout << "delete service"  << std::endl;
-    delete service;
-  }
+  // for (std::vector<Service*>::iterator it = this->services_.begin(); it != this->services_.end(); it++) {
+    //Service* service = *it; 
+    //std::cout << "delete service"  << std::endl;
+    //delete service;
+  // }
 }
 
 void Host::initialize(){
-  // this->address_ = id();
-  services_.clear();
+  // services_.clear();
   return;
 }
 

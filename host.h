@@ -8,6 +8,8 @@
 #include <vector>
 #include <algorithm>
 
+class Node;
+
 class Host : public Node {
   friend class ServiceInstaller;
 

@@ -20,8 +20,9 @@ protected:
 public:
   Node() : id_(nextId_++) {}
   int id() const { return id_; }
-  void receive(Packet *packet){}
-  void send(Packet *packet){}
+  virtual ~Node();
+  virtual void receive(Packet *packet);
+  virtual void send(Packet *packet);
 };
 
 #endif
