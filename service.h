@@ -3,11 +3,12 @@
 
 #include "node.h"
 #include "packet.h"
+#include "object.h"
 
 class Host;
 class Packet;
 
-class Service {
+class Service: Object{
   friend class ServiceInstaller;
 
 protected:

@@ -1,3 +1,5 @@
+#define CHECK_MEMORY_LEAK
+
 #include "../echo_service.h"
 #include "../echo_service_installer.h"
 #include "../host.h"
@@ -12,6 +14,7 @@ int main() {
   //   -------  --- //
   //   토폴로지 설정 //
   //   -------  --- //
+  Simulator::prepare();
 
   // 호스트를 생성한다
   Host *echoServer = new Host(1);
@@ -77,8 +80,13 @@ int main() {
   messageClient->initialize();
 
   // 메시지를 전송한다.
-  messageService->send("Hello, world!");
-  messageService->send("Bye, world!");
+  Simulator::schedule(
+      1.0, [messageService]() { messageService->send("Hello, world!"); });
+
+  Simulator::schedule(
+      2.0, [messageService]() { messageService->send("Bye, world!"); });
+
+  Simulator::run();
 
   // --- //
   // 정리 //
@@ -95,4 +103,5 @@ int main() {
 
   delete echoServer;
   delete messageClient;
+  Object::checkMemoryLeak();
 }
