@@ -10,7 +10,10 @@ class Packet;
 
 class Service: Object{
   friend class ServiceInstaller;
-
+private:
+  std::string name(){
+    return std::string("Service");
+  }
 protected:
   // 서비스가 설치된 호스트
   Host *host_;

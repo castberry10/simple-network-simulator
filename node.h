@@ -14,6 +14,9 @@ class Node : Object{
 private:
   int id_;
   static int nextId_;
+  std::string name(){
+    return std::string("Node");
+  }
 
 protected:
   std::vector<Link *> links;

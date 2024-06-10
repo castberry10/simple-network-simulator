@@ -20,7 +20,9 @@ private:
   std::vector<int> ports_;
   // 설치된 서비스 목록
   std::vector<Service *> services_;
-
+  std::string name(){
+    return std::string("Host");
+  }
 public:
   Address address() { return address_; }
   Host(Address address) : address_(address) {}

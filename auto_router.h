@@ -13,6 +13,10 @@
 #include <vector>
 
 class AutoRouter : public Router {
+private:
+  std::string name(){
+    return std::string("a");
+  }
 public:
   void calculate(const std::vector<Node *> &nodes,
                  const std::vector<Link *> &links) {

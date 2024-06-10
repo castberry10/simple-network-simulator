@@ -14,7 +14,9 @@ class Link : Object{
 private:
     Link(Node *nodeA, Node *nodeB, double delay = 0.0)
       : nodeA_(nodeA), nodeB_(nodeB), delay_(delay) {}
-
+  std::string name(){
+    return std::string("Link");
+  }
   Node *nodeA_;
   Node *nodeB_;
   

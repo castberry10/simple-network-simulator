@@ -7,6 +7,10 @@
 #include <vector>
 
 class Packet : Object{
+private:
+std::string name(){
+  return std::string("packet");
+}
 public:
   Packet(Address srcAddress, Address destAddress, short srcPort, short destPort,
          std::string data)

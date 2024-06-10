@@ -11,6 +11,10 @@ public:
 };
 
 class Router : public Node {
+private:
+std::string name(){
+  return std::string("Router");
+}
 protected:
   std::vector<RoutingEntry> routingTable_;
 

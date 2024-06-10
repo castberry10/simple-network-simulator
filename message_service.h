@@ -17,6 +17,9 @@ private:
   short destPort_;
   MessageService(Host *host, short port, Address destAddress, short destPort)
       : Service(host, port), destAddress_(destAddress), destPort_(destPort) {}
+  std::string name(){
+    return std::string("MessageService");
+  } 
 
 public:
   // 메시지를 전송한다

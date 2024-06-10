@@ -7,6 +7,9 @@
 class PacketSinkService : public Service {
 private:
   PacketSinkService(Host *host, short port);
+  std::string name(){
+    return std::string("PacketSinkService");
+  } 
 };
 
 #endif
