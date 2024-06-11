@@ -8,7 +8,7 @@
 
 class Link;
 
-class Node : Object{
+class Node : public Object{
   friend class LinkInstaller;
 
 private:

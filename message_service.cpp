@@ -18,6 +18,8 @@ void MessageService::send(std::string message){
     host_->send(newPacket);
 }
 void MessageService::receive(Packet * packet){
+    // Object::Log();
+    log(std::string("aa"));
     std::cout << "MessageService: received \"";
     std::cout << (packet->dataString()) << "\" from ";
     std::cout << packet->srcAddress().toString() << ":";

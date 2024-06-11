@@ -7,7 +7,7 @@
 
 #define PACKET_SIZE 512
 
-class BulkSendService : Service {
+class BulkSendService : public Service {
   friend class BulkSendServiceInstaller;
 
 private:
@@ -18,6 +18,8 @@ private:
 std::string name(){
   return std::string("bulk_send_service");
 }
+    void send(Packet * packet);
+    void receive(Packet * packet);
 };
 
 #endif

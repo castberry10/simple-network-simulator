@@ -8,7 +8,7 @@
 class Host;
 class Packet;
 
-class Service: Object{
+class Service: public Object{
   friend class ServiceInstaller;
 private:
   std::string name(){

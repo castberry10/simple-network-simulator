@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-class Packet : Object{
+class Packet : public Object{
 private:
 std::string name(){
   return std::string("packet");

@@ -14,6 +14,7 @@ void EchoService::send(Packet * packet){
 }
 
 void EchoService::receive(Packet * packet){
+  std::string logstring;
   std::cout << "EchoService: received \"";
   std::cout << packet->dataString() << "\" from ";
   std::cout << packet->srcAddress().toString() << ":";
