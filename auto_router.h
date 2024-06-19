@@ -14,40 +14,71 @@
 
 class AutoRouter : public Router {
 private:
-  std::string name(){
-    return std::string("a");
+  std::string name() {
+    return std::string("AutoRouter");
   }
+
+  // 라우팅 테이블
+  std::map<Node*, std::map<Node*, Node*>> routing_table;
+
 public:
   void calculate(const std::vector<Node *> &nodes,
                  const std::vector<Link *> &links) {
-    // 전체 노드와 링크 정보를 통해
-    // 모든 호스트로 전달될 수 있는 라우팅 테이블을 구성한다
-    // TODO: 데이크스트라 구현 
-    // 노드 ㅁ
-    // std::vector<std::vector<double
-    double matrix[10000][10000];
 
-    for(int i = 0; i < nodes.size(); i++){
-      for(int j = 0; j < nodes.size(); j++){
-        Node * a = nodes[i];
-        Node * b = nodes[j];
+    int n = nodes.size();
+    std::vector<std::vector<double>> matrix(n, std::vector<double>(n, std::numeric_limits<double>::infinity()));
 
-        matrix[i][j] = 9999999999;
-        for(int k = 0; k<links.size(); k++){
-          Link* l = links[k];
-          if(l->nodeA() == a && l->nodeB() == b){
-            matrix[i][j] = l->delay();
+    for (int k = 0; k < links.size(); k++) {
+      Link *l = links[k];
+      int a = std::find(nodes.begin(), nodes.end(), l->nodeA()) - nodes.begin();
+      int b = std::find(nodes.begin(), nodes.end(), l->nodeB()) - nodes.begin();
+      matrix[a][b] = l->delay();
+      matrix[b][a] = l->delay(); 
+    }
+
+    for (int src = 0; src < n; ++src) {
+      std::vector<double> dist(n, std::numeric_limits<double>::infinity());
+      std::vector<int> prev(n, -1);
+      dist[src] = 0;
+
+      std::priority_queue<std::pair<double, int>, std::vector<std::pair<double, int>>, std::greater<>> pq;
+      pq.push({0, src});
+
+      while (!pq.empty()) {
+        int u = pq.top().second;
+        pq.pop();
+
+        for (int v = 0; v < n; ++v) {
+          if (matrix[u][v] != std::numeric_limits<double>::infinity()) {
+            double alt = dist[u] + matrix[u][v];
+            if (alt < dist[v]) {
+              dist[v] = alt;
+              prev[v] = u;
+              pq.push({alt, v});
+            }
           }
         }
       }
 
-
+      for (int dest = 0; dest < n; ++dest) {
+        if (src != dest) {
+          int next_hop = dest;
+          while (prev[next_hop] != src && prev[next_hop] != -1) {
+            next_hop = prev[next_hop];
+          }
+          if (prev[next_hop] == src) {
+            routing_table[nodes[src]][nodes[dest]] = nodes[next_hop];
+          }
+        }
+      }
     }
-    // 다익스트라를 돌리면서 호스트에 대한 최소경로로 갈 수 있는 다음롭을 기록
+  }
 
-    for(int i = 0; i<nodes.size(); i++){
-      // Node* node = 
-    } 
+  Node* getNextHop(Node* src, Node* dest) {
+    if (routing_table.find(src) != routing_table.end() && routing_table[src].find(dest) != routing_table[src].end()) {
+      return routing_table[src][dest];
+    }
+    return nullptr;
   }
 };
 
