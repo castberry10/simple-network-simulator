@@ -14,9 +14,9 @@
 
 #include "link_installer.h"
 
-Link * LinkInstaller::install(Node *a, Node *b){
+Link * LinkInstaller::install(Node *a, Node *b, double delay = 0){
     Link * templink = new Link(a, b);
     a->installLink(templink);
     b->installLink(templink);
-    return new Link(a, b);
+    return templink;
 }

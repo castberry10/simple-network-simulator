@@ -50,6 +50,7 @@ public:
     // TODO: 구현
     while(scheduleQueue.size() > 0){
       Schedule schedule_ = scheduleQueue.top();
+      time_ = schedule_.time();
       schedule_.call();
       scheduleQueue.pop();
     }
