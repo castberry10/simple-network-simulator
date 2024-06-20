@@ -14,7 +14,7 @@ class Node : public Object{
 private:
   int id_;
   static int nextId_;
-  std::string name(){
+  std::string name() override {
     return std::string("Node");
   }
 

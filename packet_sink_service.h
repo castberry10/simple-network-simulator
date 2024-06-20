@@ -7,8 +7,8 @@
 class PacketSinkService : public Service {
   friend class PacketSinkServiceInstaller;
 private:
-  PacketSinkService(Host *host, short port);
-  std::string name(){
+  PacketSinkService(Host *host, short port) : Service(host, port) {};
+  std::string name() override {
     return std::string("PacketSinkService");
   }
     void send(Packet * packet);

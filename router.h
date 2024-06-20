@@ -12,7 +12,7 @@ public:
 
 class Router : public Node {
 private:
-std::string name(){
+std::string name() override {
   return std::string("Router");
 }
 protected:

@@ -8,7 +8,7 @@
 
 class Packet : public Object{
 private:
-std::string name(){
+std::string name() override{
   return std::string("packet");
 }
 public:

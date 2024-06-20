@@ -14,7 +14,7 @@
 
 class AutoRouter : public Router {
 private:
-  std::string name() {
+  std::string name() override {
     return std::string("AutoRouter");
   }
 

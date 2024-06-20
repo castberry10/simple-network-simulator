@@ -19,10 +19,12 @@ void MessageService::send(std::string message){
 }
 void MessageService::receive(Packet * packet){
     // Object::Log();
-    log(std::string("aa"));
-    std::cout << "MessageService: received \"";
-    std::cout << (packet->dataString()) << "\" from ";
-    std::cout << packet->srcAddress().toString() << ":";
-    std::cout << packet->srcPort() << std::endl;
+    // log(std::string("aa"));
+    std::stringstream ss;
+    ss << "MessageService: received \"";
+    ss << (packet->dataString()) << "\" from ";
+    ss << packet->srcAddress().toString() << ":";
+    ss << packet->srcPort();
+    log(ss.str());
     delete packet;
 }

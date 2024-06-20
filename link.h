@@ -14,7 +14,7 @@ class Link : public Object{
 private:
     Link(Node *nodeA, Node *nodeB, double delay = 0.0)
       : nodeA_(nodeA), nodeB_(nodeB), delay_(delay) {}
-  std::string name(){
+  std::string name() override {
     return std::string("Link");
   }
   Node *nodeA_;

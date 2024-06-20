@@ -9,11 +9,13 @@ void Node::installLink(Link * link){
 
 
 void Node::receive(Packet *packet){
-    std::cout << "node: receive" << std::endl;
-
+    std::stringstream ss;
+    ss << "node: receive";
+    log(ss.str());
 }
 void Node::send(Packet *packet){
-    std::cout << "node: send" << std::endl;
-    
+    std::stringstream ss;
+    ss << "node: send";
+    log(ss.str());
 }
 Node::~Node() {}

@@ -14,12 +14,13 @@ void EchoService::send(Packet * packet){
 }
 
 void EchoService::receive(Packet * packet){
-  std::string logstring;
-  std::cout << "EchoService: received \"";
-  std::cout << packet->dataString() << "\" from ";
-  std::cout << packet->srcAddress().toString() << ":";
-  std::cout << packet->srcPort() << ", ";
-  std::cout << "send reply with same data";
-  std::cout << std::endl;
+  // std::string logstring;
+  std::stringstream ss;
+  ss << "EchoService: received \"";
+  ss << packet->dataString() << "\" from ";
+  ss << packet->srcAddress().toString() << ":";
+  ss << packet->srcPort() << ", ";
+  ss << "send reply with same data";
+  log(ss.str());
   send(packet);
 }

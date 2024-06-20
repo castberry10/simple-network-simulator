@@ -11,12 +11,18 @@ class BulkSendService : public Service {
   friend class BulkSendServiceInstaller;
 
 private:
-  BulkSendService(Host *host, Address destAddress, short destPort,
-                  double delay = 1, double startTime = 0,
-                  double stopTime = 10.0);
+  Address destAddress_;
+  short destPort_;
+  double delay_;
+  double startTime_;
+  double stopTime_;
 
-std::string name(){
-  return std::string("bulk_send_service");
+BulkSendService(Host *host, Address destAddress, short destPort,
+                                 double delay, double startTime, double stopTime) :
+    Service(host, -1), destAddress_(destAddress), destPort_(destPort), delay_(delay), startTime_(startTime), stopTime_(stopTime) {}
+  
+std::string name() override  {
+  return std::string("BulkSendService");
 }
     void send(Packet * packet);
     void receive(Packet * packet);

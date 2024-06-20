@@ -14,7 +14,7 @@ private:
   EchoService(Host *host, short port) : Service(host, port) {}
   void send(Packet * packet);
   void receive(Packet * packet);
-  std::string name(){
+  std::string name()override {
     return std::string("EchoService");
   }
 };

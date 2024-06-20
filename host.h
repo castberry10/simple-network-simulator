@@ -20,7 +20,7 @@ private:
   std::vector<int> ports_;
   // 설치된 서비스 목록
   std::vector<Service *> services_;
-  std::string name(){
+  std::string name() override {
     return std::string("Host");
   }
 public:

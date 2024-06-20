@@ -3,10 +3,11 @@
 #include <iostream>
 
 void Link::inout(Node* reqNode, Packet* packet){
-  std::cout << "Link: forwarding packet from node #";
-  std::cout << reqNode->id();
-  std::cout << ", to node #";
-  std::cout << other(reqNode)->id();
-  std::cout << std::endl;
+  std::stringstream ss;
+  ss << "Link: forwarding packet from node #";
+  ss << reqNode->id();
+  ss << ", to node #";
+  ss << other(reqNode)->id();
+  log(ss.str());
   other(reqNode)->receive(packet);
 }

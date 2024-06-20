@@ -11,7 +11,7 @@ class Packet;
 class Service: public Object{
   friend class ServiceInstaller;
 private:
-  std::string name(){
+  std::string name() override {
     return std::string("Service");
   }
 protected:

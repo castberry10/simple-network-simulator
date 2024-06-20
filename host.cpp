@@ -24,40 +24,49 @@ void Host::initialize(){
 void Host::send(Packet *packet){
   int randlinkindex = rand() % links.size();
 
-  std::cout << "Host #" << id();
-  std::cout << ": sending packet (from: ";
-  std::cout << packet->srcAddress().toString();
-  std::cout << ", to: ";
-  std::cout << packet->destAddress().toString();
-  std::cout << ", " << packet->data().size();
-  std::cout << " bytes)" << std::endl;
-
+  std::stringstream ss;
+  ss << "Host #" << id();
+  ss << ": sending packet (from: ";
+  ss << packet->srcAddress().toString();
+  ss << ", to: ";
+  ss << packet->destAddress().toString();
+  ss << ", " << packet->data().size();
+  ss << " bytes)";
+  log(ss.str());
   links[randlinkindex]->inout(this, packet);
   return;
 }
 
 void Host::receive(Packet * packet){
-  
+  std::stringstream ss;
+
   for(std::vector<Service*>::size_type i = 0; i < services_.size(); i++){
     // std::cout << "services_[i]->getPort()" << services_[i]->getPort() << std::endl;
     // std::cout << "packet->destPort()" << packet->destPort() << std::endl;
     
     if(services_[i]->getPort() == packet->destPort()){
-      std::cout << "Host #" << id();
-      std::cout << ": received packet, destination port: ";
-      std::cout << packet->destPort();
-      std::cout << std::endl;
+      // std::stringstream ss;
+      ss.str("");
+      ss.clear();
+      ss << "Host #" << id();
+      ss << ": received packet, destination port: ";
+      ss << packet->destPort();
+      log(ss.str());
+
       services_[i]->receive(packet);      
       return;
     }
   }
-  std::cout << "Host #" << id();
-  std::cout << ": no service for packet (from: ";
-  std::cout << packet->srcAddress().toString();
-  std::cout << ", to: ";
-  std::cout << packet->destAddress().toString();
-  std::cout << ", " << packet->data().size();
-  std::cout << " bytes)" << std::endl;
+  ss.str("");
+  ss.clear();
+  ss << "Host #" << id();
+  ss << ": no service for packet (from: ";
+  ss << packet->srcAddress().toString();
+  ss << ", to: ";
+  ss << packet->destAddress().toString();
+  ss << ", " << packet->data().size();
+  ss << " bytes)";
+  log(ss.str());
 }
 
 int Host::availablePort(){
